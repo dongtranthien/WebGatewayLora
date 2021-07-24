@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html translate="no">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Lora system</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --a: #daeff5;
+            --main-color: #1f1c2e;
+            --secondary-color: #4a4a4a;
+            --link-color: #1f1c2e;
+            --link-color-hover: #c3cff4;
+            --link-color-active: #fff;
+            --link-color-active-bg: #1f1c2e;
+            --a8: #fff;
+            --message-box-hover: #fafcff;
+            --message-box-border: #e9ebf0;
+            --more-list-bg: #fff;
+            --more-list-bg-hover: #f6fbff;
+            --more-list-shadow: rgba(209, 209, 209, 0.4);
+            --button-bg: #1f1c24;
+            --search-area-bg: #fff;
+            --star: #1ff1c2e;
+            --message-btn: #fff;
+        }
+
+        .dark:root {
+            --a: #1f1d2b;
+            --a: #111827;
+            --main-color: #fff;
+            --secondary-color: rgba(255, 255, 255, 0.8);
+            --a8: #1f2937;
+            --link-color: rgba(255, 255, 255, 0.8);
+            --link-color-hover: rgba(195, 207, 244, 0.1);
+            --link-color-active-bg: rgba(195, 207, 244, 0.2);
+            --button-bg: #1f2937;
+            --search-area-bg: #1f2937;
+            --message-box-hover: #243244;
+            --message-box-border: rgba(255, 255, 255, 0.1);
+            --star: #ffd92c;
+            --light-font: rgba(255, 255, 255, 0.8);
+            --more-list-bg: #2f3142;
+            --more-list-bg-hover: rgba(195, 207, 244, 0.1);
+            --more-list-shadow: rgba(195, 207, 244, 0.1);
+            --message-btn: rgba(195, 207, 244, 0.1);
+        }
+
+        @keyframes spin3D {
+            from {
+                transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+            }
+
+            to {
+                transform: rotate3d(0deg);
+            }
+        }
+
+        .spinner-box {
+            width: 30vw;
+            height: 30vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        .blue-orbit {
+            width: 165px;
+            height: 165px;
+            border: 2px solid #5ec9ffa5;
+            -webkit-animation: spin3D 3s linear 0.2s infinite;
+        }
+
+        .leo {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .green-orbit {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #245a3ba5;
+            -webkit-animation: spin3D 2s linear 0s infinite;
+        }
+
+        .red-orbit {
+            width: 90px;
+            height: 90px;
+            border: 2px solid #ffca91a5;
+            -webkit-animation: spin3D 1s linear 0s infinite;
+        }
+
+        .white-orbit {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #500404;
+            -webkit-animation: spin3D 10s linear 0s infinite;
+        }
+
+        .w1 {
+            transform: rotate3D(1, 1, 1, 90deg);
+        }
+
+        .w2 {
+            transform: rotate3D(1, 2, 0.5, 90deg);
+        }
+
+        .w3 {
+            transform: rotate3D(0.5, 1, 2, 90deg);
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            background-color: var(--a);
+        }
+
+        button,
+        a {
+            cursor: pointer;
+        }
+
+        .a {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: var(--a);
+            transition: 0.2s;
+            max-width: 1800px;
+        }
+
+        .a4 {
+            display: flex;
+            height: 100%;
+            overflow: hidden;
+            padding: 16px 24px 12px 0;
+        }
+
+        .f {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 16px 24px;
+            position: relative;
+        }
+
+        .s,
+        .d {
+            display: flex;
+            align-items: center;
+        }
+
+        .s {
+            flex-grow: 1;
+        }
+
+        .d button {
+            margin-left: 10px;
+        }
+
+        .g {
+            width: 26px;
+            height: 2px;
+            border-radius: 4px;
+            background-color: var(--main-color);
+            position: relative;
+        }
+
+        .g:before,
+        .g:after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 2px;
+            border-radius: 4px;
+            background-color: var(--main-color);
+            left: 50%;
+            transform: translatex(-50%);
+        }
+
+        .g:before {
+            top: -6px;
+        }
+
+        .g:after {
+            bottom: -6px;
+        }
+
+        .h {
+            color: var(--main-color);
+            margin: 0;
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: 700;
+            margin: 0 32px;
+        }
+
+        .a3 {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            color: var(--main-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .j {
+            border-radius: 20px;
+            background-color: var(--search-area-bg);
+            padding-right: 12px;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 480px;
+            color: var(--light-font);
+            box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+                0 24px 20px -24px rgba(71, 82, 107, 0.1);
+            overflow: hidden;
+        }
+
+        .dark .j {
+            box-shadow: none;
+        }
+
+        .k {
+            border: none;
+            flex: 1;
+            outline: none;
+            height: 100%;
+            padding: 0 20px;
+            font-size: 16px;
+            background-color: var(--search-area-bg);
+            color: var(--main-color);
+        }
+
+        .k:placeholder {
+            color: var(--main-color);
+            opacity: 0.6;
+        }
+
+        .add-btn {
+            color: #fff;
+            background-color: var(--button-bg);
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .a2 {
+            color: var(--main-color);
+            padding: 0;
+            border: 0;
+            background-color: transparent;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .a5 {
+            padding: 0;
+            border: 0;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            border-left: 2px solid #ddd;
+        }
+
+        .a5 span {
+            color: var(--main-color);
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 700;
+        }
+
+        .a7 {
+            padding: 40px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .a1 {
+            color: var(--main-color);
+            color: var(--link-color);
+            margin: 16px 0;
+            transition: 0.2s;
+            border-radius: 50%;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .a1:hover {
+            background-color: var(--link-color-hover);
+            color: var(--link-color-active);
+        }
+
+        .a1.active {
+            background-color: var(--link-color-active-bg);
+            color: var(--link-color-active);
+        }
+
+        .a8 {
+            flex: 2;
+            background-color: var(--a8);
+            border-radius: 32px;
+            padding: 32px 32px 0 32px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .m {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: var(--main-color);
+        }
+
+        .m p {
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+            opacity: 0.9;
+            margin: 0;
+            color: var(--main-color);
+        }
+
+        .m .time {
+            font-size: 20px;
+        }
+
+        .view-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .n {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px;
+            border-radius: 4px;
+            background-color: transparent;
+            border: none;
+            color: var(--main-color);
+            margin-left: 8px;
+            transition: 0.2s;
+        }
+
+        .n.active {
+            background-color: var(--link-color-active-bg);
+            color: var(--link-color-active);
+        }
+
+        .n:not(.active):hover {
+            background-color: var(--link-color-hover);
+            color: var(--link-color-active);
+        }
+
+        .v {
+            margin: 0 -8px;
+            overflow-y: auto;
+        }
+
+        .v.b {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .v.b .i {
+            width: 33.3%;
+        }
+
+        .project-box {
+            --main-color-card: #dbf6fd;
+            border-radius: 30px;
+            padding: 16px;
+            background-color: var(--main-color-card);
+        }
+
+        .o {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            color: var(--main-color);
+        }
+
+        .o span {
+            color: #4a4a4a;
+            opacity: 0.7;
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        .l {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .l p {
+            margin: 0;
+        }
+
+        .i {
+            padding: 8px;
+            transition: 0.2s;
+        }
+
+        .p {
+            padding: 0;
+            height: 14px;
+            width: 24px;
+            height: 24px;
+            position: relative;
+            background-color: transparent;
+            border: none;
+            flex-shrink: 0;
+        }
+
+        .a9 {
+            position: relative;
+        }
+
+        .q {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 700;
+            opacity: 0.7;
+        }
+
+        .c {
+            display: block;
+            height: 4px;
+            border-radius: 6px;
+        }
+
+        .t {
+            width: 100%;
+            height: 4px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #fff;
+            margin: 8px 0;
+        }
+
+        .r {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 16px;
+            margin: 0;
+        }
+
+        .y {
+            text-align: right;
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 16px;
+        }
+
+        .u {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 16px;
+            position: relative;
+        }
+
+        .u:after {
+            content: "";
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6);
+            width: calc(100%+32px);
+            top: 0;
+            left: -16px;
+            height: 1px;
+        }
+
+        .x {
+            display: flex;
+            align-items: center;
+        }
+
+        .z {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin-left: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .days-left {
+            background-color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            border-radius: 20px;
+            flex-shrink: 0;
+            padding: 6px 16px;
+            font-weight: 700;
+        }
+
+        .a3.active .moon {
+            fill: var(--main-color);
+        }
+
+        .messages-btn {
+            border-radius: 4px 0 0 4px;
+            position: absolute;
+            right: 0;
+            top: 58px;
+            background-color: var(--message-btn);
+            border: none;
+            color: var(--main-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+            display: none;
+        }
+
+        @media screen and (max-width: 980px) {
+            .v.b .i {
+                width: 50%;
+            }
+        }
+
+        @media screen and (max-width: 720px) {
+
+            .h,
+            .a5 span {
+                display: none;
+            }
+
+            .add-btn,
+            .a2,
+            .a3 {
+                width: 20px;
+                height: 20px;
+            }
+
+            .add-btn svg,
+            .a2 svg,
+            .a3 svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .d button {
+                margin-left: 4px;
+            }
+        }
+
+        @media screen and (max-width: 520px) {
+            .a8 {
+                overflow: auto;
+            }
+
+            .v {
+                overflow-y: visible;
+            }
+
+            .a4 {
+                padding: 16px 12px 24px 0px;
+            }
+
+            .n {
+                width: 24px;
+                height: 24px;
+            }
+
+            .f {
+                padding: 16px 10px;
+            }
+
+            .k {
+                max-width: 120px;
+            }
+
+            .v.b .i {
+                width: 100%;
+            }
+
+            .a8 {
+                padding: 24px 16px 0 16px;
+            }
+
+            .f {
+                padding: 10px;
+            }
+
+            .m p,
+            .m .time {
+                font-size: 18px;
+            }
+
+            .k {
+                font-size: 14px;
+            }
+
+            .messages-btn {
+                top: 48px;
+            }
+
+            .q {
+                font-size: 12px;
+                line-height: 16px;
+            }
+
+            .r {
+                font-size: 12px;
+            }
+
+            .y {
+                font-size: 10px;
+            }
+
+            .days-left {
+                font-size: 8px;
+                padding: 6px 6px;
+                text-align: center;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --select-border: #777;
+            --select-focus: blue;
+            --select-arrow: var(--select-border);
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 1em 0 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            z-index: 1;
+            outline: none;
+        }
+
+        select::-ms-expand {
+            display: none;
+        }
+
+        .select {
+            display: grid;
+            grid-template-areas: "select";
+            align-items: center;
+            position: relative;
+            min-width: 15ch;
+            max-width: 30ch;
+            border: 1px solid var(--select-border);
+            border-radius: 0.25em;
+            padding: 0.25em 0.5em;
+            font-size: 1.25rem;
+            cursor: pointer;
+            line-height: 1.1;
+            background-color: #fff;
+            background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+        }
+
+        .select select,
+        .select::after {
+            grid-area: select;
+        }
+
+        .select:not(.select--multiple)::after {
+            content: "";
+            justify-self: end;
+            width: 0.8em;
+            height: 0.5em;
+            background-color: var(--select-arrow);
+            -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+        }
+
+        select:focus+.focus {
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border: 2px solid var(--select-focus);
+            border-radius: inherit;
+        }
+
+        select[multiple] {
+            padding-right: 0;
+            height: 6rem;
+        }
+
+        select[multiple] option {
+            white-space: normal;
+            outline-color: var(--select-focus);
+        }
+
+        .select--disabled {
+            cursor: not-allowed;
+            background-color: #eee;
+            background-image: linear-gradient(to top, #ddd, #eee 33%);
+        }
+
+        label {
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .select+label {
+            margin-top: 2rem;
+        }
+
+        .lineConfig {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .lineConfig label {
+            margin: 10px;
+            width: 25%;
+            text-align: right;
+        }
+
+        .lineConfig div {
+            width: 75%;
+            margin-left: 1vw;
+        }
+    </style>
+    <style>
+        :root {
+            --panel-border-width: 0.1em;
+            --panel-padding: 0.1em;
+        }
+
+        .panel {
+            background: var(--panel-color);
+            border-radius: var(--panel-border-width);
+            padding: var(--panel-border-width);
+            border-radius: 5px;
+        }
+
+        .panel__header {
+            padding-left: 10px;
+            font-size: 0.8em;
+            color: white;
+        }
+
+        .panel__content {
+            color: black;
+        }
+
+        .panel__title {
+            line-height: 1;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .panel__content {
+            background: #fff;
+        }
+
+        .example {
+            display: flex;
+            flex-grow: 1;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            place-items: center;
+        }
+
+        .example>* {
+            flex-grow: 1;
+        }
+    </style>
+    <style>
+        .inputView {
+            font-size: 1.125rem;
+            border: 0px transparent;
+            box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.075) inset;
+            color: #555;
+            width: 100%;
+        }
+
+        .inputView:hover {
+            background-color: #d9edf7;
+            box-shadow: none;
+        }
+
+        .infoTable {
+            width: 100%;
+            border-collapse: collapse;
+            padding: 100px;
+        }
+
+        /* Zebra striping */
+        tr:nth-of-type(odd) {
+            background: #eee;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        td,
+        th {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+            font-size: 0.8rem;
+        }
+
+        /* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+        @media only screen and (max-width: 760px),
+        (min-device-width: 768px) and (max-device-width: 1024px) {
+
+            .infoTable {
+                width: 100%;
+            }
+
+            /* Force table to not be like tables anymore */
+            .infoTable,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+            }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                /* Label the data */
+                content: attr(data-column);
+
+                color: #000;
+                font-weight: bold;
+            }
+
+        }
+    </style>
+    <style>
+        .tabs {
+            position: relative;
+            background: white;
+            padding: 10px;
+            padding-bottom: 80px;
+            width: 100%;
+            height: 250px;
+            border-radius: 5px;
+            min-width: 240px;
+        }
+
+        .tabs input[name=tab-control] {
+            display: none;
+        }
+
+        .tabs .content section h2,
+        .tabs ul li label {
+            font-family: "Montserrat";
+            font-weight: bold;
+            font-size: 18px;
+            color: #929daf;
+        }
+
+        .tabs ul {
+            list-style-type: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .tabs ul li {
+            box-sizing: border-box;
+            flex: 1;
+            width: 25%;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        .tabs ul li label br {
+            display: none;
+        }
+
+        .tabs ul li label {
+            fill: #929daf;
+            height: 1.2em;
+            vertical-align: bottom;
+            margin-right: 0.2em;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tabs ul li label:hover,
+        .tabs ul li label:focus,
+        .tabs ul li label:active {
+            outline: 0;
+            color: #bec5cf;
+        }
+
+        .tabs .slider {
+            position: relative;
+            width: 14.3%;
+            transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+        }
+
+        .tabs .slider .indicator {
+            position: relative;
+            width: 50px;
+            max-width: 100%;
+            margin: 0 auto;
+            height: 4px;
+            background: #428BFF;
+            border-radius: 1px;
+        }
+
+        .tabs .content {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<div id="wait" style="position: absolute; left: 35vw; z-index: 0; opacity: 0" class="spinner-box">
+    <div class="blue-orbit leo"></div>
+    <div class="green-orbit leo"></div>
+    <div class="red-orbit leo"></div>
+    <div class="white-orbit w1 leo"></div>
+    <div class="white-orbit w2 leo"></div>
+    <div class="white-orbit w3 leo"></div>
+</div>
+<div id="main" class="a">
+    <div class="f">
+        <div class="s">
+            <span class="g"></span>
+            <p class="h">LORA SYSTEM</p>
+            <div class="j">
+                <input class="k" type="text" placeholder="Search" />
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="d">
+            <button class="a3" title="Switch Theme">
+                <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+            </button>
+            <button class="add-btn" title="Add New Project">
+                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+            <button class="a2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+            </button>
+            <button class="a5"><span>IDEA Group</span></button>
+        </div>
+        <button class="messages-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                </path>
+            </svg>
+        </button>
+    </div>
+    <div class="a4">
+        <div class="a7">
+            <a id="1" class="a1 active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </a>
+            <a id="2" class="a1">
+                <svg class="link-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"></path>
+                </svg>
+            </a>
+            <a id="3" class="a1">
+                <svg class="link-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+        <div id="content" class="a8">
+            <div class="m">
+                <p>Setting</p>
+            </div>
+
+            <div class="tabs">
+
+                <input type="radio" id="tab1" name="tab-control">
+                <input type="radio" id="tab2" name="tab-control">
+                <input type="radio" id="tab3" name="tab-control">
+                <input type="radio" id="tab4" name="tab-control">
+                <input type="radio" id="tab5" name="tab-control">
+                <input type="radio" id="tab6" name="tab-control">
+                <input type="radio" id="tab7" name="tab-control">
+                <ul>
+                    <li><label for="tab1" role="button">
+                            <br><span>Information</span></label></li>
+                    <li><label for="tab2" role="button">
+                            <br><span>Wireless</span></label></li>
+                    <li><label for="tab3" role="button">
+                            <br><span>Network App</span></label></li>
+                    <li><label for="tab4" role="button">
+                            <br><span>Control</span></label></li>
+                    <li><label for="tab5" role="button">
+                            <br><span>General</span></label></li>
+                    <li><label for="tab6" role="button">
+                            <br><span>Access</span></label></li>
+                    <li><label for="tab7" role="button">
+                            <br><span>Account</span></label></li>
+                </ul>
+
+                <div id="slider" class="slider">
+                    <div class="indicator"></div>
+                </div>
+                <div class="content11">
+                    <section>
+
+                    </section>
+                    <section>
+
+                    </section>
+                    <section>
+
+                    </section>
+                    <section>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var modeSwitch = document.querySelector(".a3");
+        var nodeObj = [
+            { i: "#1a841ec51", r: -16, e: 0, s: 0 },
+            { i: "#ee18c5113", r: -16, e: 0, s: 0 },
+            { i: "#52ca15f14", r: -20, e: 0, s: 0 },
+            { i: "#d55168aef2", r: -27, e: 3, s: 1 },
+            { i: "#1af85c88", r: -51, e: 0, s: 1 },
+        ];
+        modeSwitch.addEventListener("click", function () {
+            document.documentElement.classList.toggle("dark");
+            modeSwitch.classList.toggle("active");
+        });
+        function buildInfomation() {
+            let contentStr = '<div class="m"><p>Information</p><div class="view-actions"><button class="n list-view" title="List View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button><button class="n grid-view active" title="Grid View"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></button></div></div><div style="overflow: scroll"><div class="example bg-1"><section class="panel" style="background: #d9534f;"><header class="panel__header"><h1 class="panel__title">Module</h1></header><div class="panel__content"><div class="lineConfig"><label>Model Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%;" value="Gateway0442" readonly></input></div></div></div><div class="lineConfig"><label>Customized Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442" readonly></input></div></div></div><div class="lineConfig"><label>UUID</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442-51A89CE21A" readonly></input></div></div></div><div class="lineConfig"><label>Working Mode</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Initial Mode" readonly></input></div></div></div></div></section></div><div class="example bg-1"><section class="panel" style="background: #5cb85c;"><header class="panel__header"><h1 class="panel__title">Wireless Status</h1></header><div class="panel__content"><table class="infoTable"><thead><tr><th>Type</th><th>Status</th></tr></thead><tbody><tr><td data-column="First Name">MAC ID of the Client Device</td><td data-column="Last Name">C0-E4-34-8C-80-FF</td></tr></tbody></table></div></section></div><div class="example bg-1"><section class="panel" style="background: #428bca;"><header class="panel__header"><h1 class="panel__title">Network Information</h1></header><div class="panel__content"><div class="lineConfig"><label>WLAN Mode</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Infrastructure Mode" readonly></input></div></div></div><div class="lineConfig"><label>Mac</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="51-A8-9C-E2-1A" readonly></input></div></div></div><div class="lineConfig"><label>IP</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="192.168.1.10" readonly></input></div></div></div><div class="lineConfig"><label>Gateway</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="192.168.1.1" readonly></input></div></div></div><div class="lineConfig"><label>Subnet</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="255.255.255.0" readonly></input></div></div></div><div class="lineConfig"><label>IP Mode</label><div></div></div></div></section></div><div class="example bg-1"><section class="panel" style="background: #f0ad4e;"><header class="panel__header"><h1 class="panel__title">Module Information</h1></header><div class="panel__content"><table class="infoTable"><thead><tr><th>Module Name</th><th>Module Description</th><th>Firmware Description</th></tr></thead><tbody><tr><td data-column="First Name">Gateway-0442</td><td data-column="Last Name">4-ch DI and 4-ch DO IoT Wireless I/O Module with RS-485 Port</td><td data-column="Job Title">Fw:A2.00 B07, Bootloader:A1.00 B01</td></tr></tbody></table></div></section></div></div>';
+
+            document.getElementById("content").innerHTML = contentStr;
+        }
+        function buildDashboard() {
+            let color_t = [
+                "fee4cb",
+                "e9e7fd",
+                "dbf6fd",
+                "ffd3e2",
+                "c8f7dc",
+                "d5deff",
+            ];
+            let contentStr =
+                '<div class="m"><p>Dashboard</p><div class="view-actions"> <button class="n list-view" title="List View"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <line x1="8" y1="6" x2="21" y2="6" /> <line x1="8" y1="12" x2="21" y2="12" /> <line x1="8" y1="18" x2="21" y2="18" /> <line x1="3" y1="6" x2="3.01" y2="6" /> <line x1="3" y1="12" x2="3.01" y2="12" /> <line x1="3" y1="18" x2="3.01" y2="18" /></svg> </button> <button class="n grid-view active" title="Grid View"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <rect x="3" y="3" width="7" height="7" /> <rect x="14" y="3" width="7" height="7" /> <rect x="14" y="14" width="7" height="7" /> <rect x="3" y="14" width="7" height="7" /></svg> </button></div></div><div class="v b" style="margin-bottom: 10px;">';
+            for (let i = 0; i < nodeObj.length; i++) {
+                let s = "OFFLINE";
+                if (nodeObj[i].s == 1) {
+                    s = "ONLINE";
+                }
+                contentStr +=
+                    '<div class="i"><div class="project-box" style="background-color: #' +
+                    color_t[i] +
+                    ';"><div class="o"> <span>' +
+                    s +
+                    '</span><div class="a9"> <button class="p"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="1" /> <circle cx="12" cy="5" r="1" /> <circle cx="12" cy="19" r="1" /></svg> </button></div></div><div class="l"><p class="q">' +
+                    nodeObj[i].i +
+                    '</p></div><div class="e"><p class="r">RSSI</p><div class="t"> <span class="c" style="width: ' +
+                    (100 + nodeObj[i].r) +
+                    '%; background-color: #ff942e"></span></div><p class="y">' +
+                    nodeObj[i].r +
+                    '%</p></div><div class="u"><div class="x"> <button class="z" style="color: #ff942e;"> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 5v14M5 12h14" /> </svg> </button></div><div class="days-left" style="color: #ff942e;">' +
+                    nodeObj[i].e +
+                    " Error</div></div></div></div>";
+            }
+            contentStr += "</div>";
+            document.getElementById("content").innerHTML = contentStr;
+        }
+        function buildConfig() {
+            document.getElementById("content").innerHTML = '<div class="m"><p>Setting</p></div><div class="tabs"><input type="radio" id="tab1" name="tab-control"><input type="radio" id="tab2" name="tab-control"><input type="radio" id="tab3" name="tab-control"><input type="radio" id="tab4" name="tab-control"><input type="radio" id="tab5" name="tab-control"><input type="radio" id="tab6" name="tab-control"><input type="radio" id="tab7" name="tab-control"><ul><li><label for="tab1" role="button"><br><span>Information</span></label></li><li><label for="tab2" role="button"><br><span>Wireless</span></label></li><li><label for="tab3" role="button"><br><span>Network App</span></label></li><li><label for="tab4" role="button"><br><span>Control</span></label></li><li><label for="tab5" role="button"><br><span>General</span></label></li><li><label for="tab6" role="button"><br><span>Access</span></label></li><li><label for="tab7" role="button"><br><span>Account</span></label></li></ul><div id="slider" class="slider"><div class="indicator"></div></div><div class="content11"><section></section><section></section><section></section><section></section></div></div>';
+            for(let i=0;i<7;i++){document.getElementById("tab"+(i+1)).addEventListener("click",()=>translateTab(i));}
+        }
+        function translateTab(n) {
+            document.getElementById("slider").style.transform = "translateX(" + n * 100 + "%)";
+        }
+        buildConfig();
+        var page = 1;
+        var config = [1, 2, 3];
+        function setPage(i) {
+            if (page == i) return;
+            page = i;
+            document.getElementById("1").classList.remove("active");
+            document.getElementById("2").classList.remove("active");
+            document.getElementById("3").classList.remove("active");
+            if (i == 1) {
+                document.getElementById("1").classList.add("active");
+                buildInfomation();
+            } else if (i == 2) {
+                document.getElementById("2").classList.add("active");
+                buildDashboard();
+            } else if (i == 3) {
+                document.getElementById("3").classList.add("active");
+                buildConfig();
+                //
+                //document.getElementById("content").innerHTML =
+                //   '<div class="m"><p>Config</p><div class="view-actions"><button class="n list-view" title="List View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" ><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg></button><button class="n grid-view active" title="Grid View"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg></button></div></div><div style="display: flex; flex-direction: column; margin: 2vw"><div class="lineConfig"><label>Spreading Factor</label><div><div class="select" style="width:30%"><select id="sf"><option value="7">SF7</option><option value="8">SF8</option><option value="9">SF9</option><option value="10">SF10</option><option value="11">SF11</option><option value="12">SF12</option></select><span class="focus"></span></div></div></div><div class="lineConfig"><label>Bandwidth</label><div><div class="select" style="width: 30%;"><select id="bw"><option value="0">125KHz</option><option value="1">250KHz</option><option value="2">500KHz</option></select><span class="focus"></span></div></div></div><div class="lineConfig"><label>Code rate</label><div><div class="select" style="width: 30%;"><select id="cr"><option value="1">4/5</option><option value="2">4/6</option><option value="3">4/7</option><option value="4">4/8</option></select><span class="focus"></span></div></div></div></div><div style="display: flex; flex-direction: column; margin: 2vw"><div style="display: flex;align-items: center;"><div style="width: 75%;"><div style="display: flex;justify-content: center;"><button id="configBtn" style="z-index:2; width: 20vw;font-size: 2vw; border-radius: 0.5vw;background-color: #4ce06c;">Update</button></div></div><div style="width: 30%;"></div></div></div>';
+                //document.getElementById("sf").selectedIndex = config[0];
+                //document.getElementById("bw").selectedIndex = config[1];
+                //document.getElementById("cr").selectedIndex = config[2];
+                //document
+                //    .getElementById("configBtn")
+                //    .addEventListener("click", SetConfig);
+            }
+        }
+        document.getElementById("1").addEventListener("click", function () {
+            setPage(1);
+        });
+        document.getElementById("2").addEventListener("click", function () {
+            setPage(2);
+        });
+        document.getElementById("3").addEventListener("click", function () {
+            setPage(3);
+        });
+        function SetConfig() {
+            document.getElementById("main").style.opacity = "0.1";
+            let wait = document.getElementById("wait");
+            wait.style.opacity = "1";
+            wait.style.zIndex = 2;
+            httpGetAsync(
+                "/config/" +
+                document.getElementById("sf").selectedIndex +
+                "_" +
+                document.getElementById("bw").selectedIndex +
+                "_" +
+                document.getElementById("cr").selectedIndex,
+                ProcessConfigResponse
+            );
+        }
+        function ProcessConfigResponse(result) {
+            console.log("ProcessConfigResponse");
+            console.log(result);
+            setTimeout(CheckConfigStatus, 1000);
+        }
+        function CheckConfigStatus() {
+            httpGetAsync("/configStatus", ProcessConfigStatus);
+        }
+        function ProcessConfigStatus(result) {
+            console.log("ProcessConfigStatus..");
+            console.log(result);
+            if (result.substring(0, 4) == "Done") {
+                console.log("Config Done..");
+                document.getElementById("main").style.opacity = "1";
+                let wait = document.getElementById("wait");
+                wait.style.opacity = "0";
+                wait.style.zIndex = 0;
+            } else {
+                setTimeout(CheckConfigStatus, 1000);
+            }
+        }
+        function httpGetAsync(theUrl, callback) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+            };
+            xmlHttp.open("GET", theUrl, true);
+            xmlHttp.send(null);
+        }
+        function ProcessReceived(result) {
+            console.log(result);
+            nodeObj = JSON.parse(result);
+            nodeObj.push({ i: "#d55168aef2", r: -27, e: 3, s: 1 });
+            nodeObj.push({ i: "#1af85c88", r: -51, e: 0, s: 1 });
+            if (page == 1) {
+                buildDashboard();
+            }
+            setTimeout(RequestData, 3000);
+        }
+        function RequestData() {
+            httpGetAsync("/data", ProcessReceived);
+        }
+        RequestData();
+    });
+</script>
+
+</html>
