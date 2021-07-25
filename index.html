@@ -798,7 +798,7 @@
             color: white;
         }
 
-        .panel__content {
+        .a6 {
             color: black;
         }
 
@@ -808,7 +808,7 @@
             margin-bottom: 5px;
         }
 
-        .panel__content {
+        .a6 {
             background: #fff;
         }
 
@@ -837,6 +837,19 @@
         .inputView:hover {
             background-color: #d9edf7;
             box-shadow: none;
+        }
+
+		.inputEdit {
+            font-size: 1.125rem;
+            width: 100%;
+			height: 100%;
+			border-radius: 5px;
+        }
+
+        .inputEdit:hover {
+            box-shadow: none;
+			border-color: #66afe9;
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
         }
 
         .infoTable {
@@ -981,6 +994,7 @@ and also iPads specifically.
         .tabs ul li label:active {
             outline: 0;
             color: #bec5cf;
+            cursor: pointer
         }
 
         .tabs .slider {
@@ -1029,20 +1043,7 @@ and also iPads specifically.
             </div>
         </div>
         <div class="d">
-            <button class="a3" title="Switch Theme">
-                <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                    <defs></defs>
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                </svg>
-            </button>
-            <button class="add-btn" title="Add New Project">
-                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            </button>
+            
             <button class="a2">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -1093,8 +1094,7 @@ and also iPads specifically.
                 <p>Setting</p>
             </div>
 
-            <div class="tabs">
-
+            <div class="tabs" style="overflow: scroll; height:100%">
                 <input type="radio" id="tab1" name="tab-control">
                 <input type="radio" id="tab2" name="tab-control">
                 <input type="radio" id="tab3" name="tab-control">
@@ -1103,37 +1103,30 @@ and also iPads specifically.
                 <input type="radio" id="tab6" name="tab-control">
                 <input type="radio" id="tab7" name="tab-control">
                 <ul>
-                    <li><label for="tab1" role="button">
+                    <li><label for="tab1">
                             <br><span>Information</span></label></li>
-                    <li><label for="tab2" role="button">
+                    <li><label for="tab2">
                             <br><span>Wireless</span></label></li>
-                    <li><label for="tab3" role="button">
+                    <li><label for="tab3">
                             <br><span>Network App</span></label></li>
-                    <li><label for="tab4" role="button">
+                    <li><label for="tab4">
                             <br><span>Control</span></label></li>
-                    <li><label for="tab5" role="button">
+                    <li><label for="tab5">
                             <br><span>General</span></label></li>
-                    <li><label for="tab6" role="button">
+                    <li><label for="tab6">
                             <br><span>Access</span></label></li>
-                    <li><label for="tab7" role="button">
+                    <li><label for="tab7">
                             <br><span>Account</span></label></li>
                 </ul>
 
                 <div id="slider" class="slider">
                     <div class="indicator"></div>
                 </div>
-                <div class="content11">
-                    <section>
-
-                    </section>
-                    <section>
-
-                    </section>
-                    <section>
-
-                    </section>
-                    <section>
-
+                <div>
+                    <section class="panel" style="background:#f5f5f5;margin-left:20px;margin-top:10px">
+                        <div id="a6" class="a6" style="padding: 20px;">
+                            
+                        </div>
                     </section>
                 </div>
             </div>
@@ -1150,12 +1143,8 @@ and also iPads specifically.
             { i: "#d55168aef2", r: -27, e: 3, s: 1 },
             { i: "#1af85c88", r: -51, e: 0, s: 1 },
         ];
-        modeSwitch.addEventListener("click", function () {
-            document.documentElement.classList.toggle("dark");
-            modeSwitch.classList.toggle("active");
-        });
         function buildInfomation() {
-            let contentStr = '<div class="m"><p>Information</p><div class="view-actions"><button class="n list-view" title="List View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button><button class="n grid-view active" title="Grid View"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></button></div></div><div style="overflow: scroll"><div class="example bg-1"><section class="panel" style="background: #d9534f;"><header class="panel__header"><h1 class="panel__title">Module</h1></header><div class="panel__content"><div class="lineConfig"><label>Model Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%;" value="Gateway0442" readonly></input></div></div></div><div class="lineConfig"><label>Customized Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442" readonly></input></div></div></div><div class="lineConfig"><label>UUID</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442-51A89CE21A" readonly></input></div></div></div><div class="lineConfig"><label>Working Mode</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Initial Mode" readonly></input></div></div></div></div></section></div><div class="example bg-1"><section class="panel" style="background: #5cb85c;"><header class="panel__header"><h1 class="panel__title">Wireless Status</h1></header><div class="panel__content"><table class="infoTable"><thead><tr><th>Type</th><th>Status</th></tr></thead><tbody><tr><td data-column="First Name">MAC ID of the Client Device</td><td data-column="Last Name">C0-E4-34-8C-80-FF</td></tr></tbody></table></div></section></div><div class="example bg-1"><section class="panel" style="background: #428bca;"><header class="panel__header"><h1 class="panel__title">Network Information</h1></header><div class="panel__content"><div class="lineConfig"><label>WLAN Mode</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Infrastructure Mode" readonly></input></div></div></div><div class="lineConfig"><label>Mac</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="51-A8-9C-E2-1A" readonly></input></div></div></div><div class="lineConfig"><label>IP</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="192.168.1.10" readonly></input></div></div></div><div class="lineConfig"><label>Gateway</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="192.168.1.1" readonly></input></div></div></div><div class="lineConfig"><label>Subnet</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="255.255.255.0" readonly></input></div></div></div><div class="lineConfig"><label>IP Mode</label><div></div></div></div></section></div><div class="example bg-1"><section class="panel" style="background: #f0ad4e;"><header class="panel__header"><h1 class="panel__title">Module Information</h1></header><div class="panel__content"><table class="infoTable"><thead><tr><th>Module Name</th><th>Module Description</th><th>Firmware Description</th></tr></thead><tbody><tr><td data-column="First Name">Gateway-0442</td><td data-column="Last Name">4-ch DI and 4-ch DO IoT Wireless I/O Module with RS-485 Port</td><td data-column="Job Title">Fw:A2.00 B07, Bootloader:A1.00 B01</td></tr></tbody></table></div></section></div></div>';
+            let contentStr = '<div class="m"><p>Information</p><div class="view-actions"><button class="n list-view" title="List View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button><button class="n grid-view active" title="Grid View"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></button></div></div><div style="overflow: scroll"><div class="example bg-1"><section class="panel" style="background: #d9534f;"><header class="panel__header"><h1 class="panel__title">Module</h1></header><div class="a6"><div class="lineConfig"><label>Model Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%;" value="Gateway0442" readonly></input></div></div></div><div class="lineConfig"><label>Customized Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442" readonly></input></div></div></div><div class="lineConfig"><label>UUID</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442-51A89CE21A" readonly></input></div></div></div><div class="lineConfig"><label>Working Mode</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Initial Mode" readonly></input></div></div></div></div></section></div><div class="example bg-1"><section class="panel" style="background: #5cb85c;"><header class="panel__header"><h1 class="panel__title">Wireless Status</h1></header><div class="a6"><table class="infoTable"><thead><tr><th>Type</th><th>Status</th></tr></thead><tbody><tr><td >MAC ID of the Client Device</td><td>C0-E4-34-8C-80-FF</td></tr></tbody></table></div></section></div><div class="example bg-1"><section class="panel" style="background: #428bca;"><header class="panel__header"><h1 class="panel__title">Network Information</h1></header><div class="a6"><div class="lineConfig"><label>WLAN Mode</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Infrastructure Mode" readonly></input></div></div></div><div class="lineConfig"><label>Mac</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="51-A8-9C-E2-1A" readonly></input></div></div></div><div class="lineConfig"><label>IP</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="192.168.1.10" readonly></input></div></div></div><div class="lineConfig"><label>Gateway</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="192.168.1.1" readonly></input></div></div></div><div class="lineConfig"><label>Subnet</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="255.255.255.0" readonly></input></div></div></div><div class="lineConfig"><label>IP Mode</label><div></div></div></div></section></div><div class="example bg-1"><section class="panel" style="background: #f0ad4e;"><header class="panel__header"><h1 class="panel__title">Module Information</h1></header><div class="a6"><table class="infoTable"><thead><tr><th>Module Name</th><th>Module Description</th><th>Firmware Description</th></tr></thead><tbody><tr><td >Gateway-0442</td><td>4-ch DI and 4-ch DO IoT Wireless I/O Module with RS-485 Port</td><td data-column="Job Title">Fw:A2.00 B07, Bootloader:A1.00 B01</td></tr></tbody></table></div></section></div></div>';
 
             document.getElementById("content").innerHTML = contentStr;
         }
@@ -1194,11 +1183,41 @@ and also iPads specifically.
             document.getElementById("content").innerHTML = contentStr;
         }
         function buildConfig() {
-            document.getElementById("content").innerHTML = '<div class="m"><p>Setting</p></div><div class="tabs"><input type="radio" id="tab1" name="tab-control"><input type="radio" id="tab2" name="tab-control"><input type="radio" id="tab3" name="tab-control"><input type="radio" id="tab4" name="tab-control"><input type="radio" id="tab5" name="tab-control"><input type="radio" id="tab6" name="tab-control"><input type="radio" id="tab7" name="tab-control"><ul><li><label for="tab1" role="button"><br><span>Information</span></label></li><li><label for="tab2" role="button"><br><span>Wireless</span></label></li><li><label for="tab3" role="button"><br><span>Network App</span></label></li><li><label for="tab4" role="button"><br><span>Control</span></label></li><li><label for="tab5" role="button"><br><span>General</span></label></li><li><label for="tab6" role="button"><br><span>Access</span></label></li><li><label for="tab7" role="button"><br><span>Account</span></label></li></ul><div id="slider" class="slider"><div class="indicator"></div></div><div class="content11"><section></section><section></section><section></section><section></section></div></div>';
-            for(let i=0;i<7;i++){document.getElementById("tab"+(i+1)).addEventListener("click",()=>translateTab(i));}
+            //document.getElementById("content").innerHTML = '<div class="m"><p>Setting</p></div><div class="tabs"><input type="radio" id="tab1" name="tab-control"><input type="radio" id="tab2" name="tab-control"><input type="radio" id="tab3" name="tab-control"><input type="radio" id="tab4" name="tab-control"><input type="radio" id="tab5" name="tab-control"><input type="radio" id="tab6" name="tab-control"><input type="radio" id="tab7" name="tab-control"><ul><li><label for="tab1"><br><span>Information</span></label></li><li><label for="tab2"><br><span>Wireless</span></label></li><li><label for="tab3"><br><span>Network App</span></label></li><li><label for="tab4"><br><span>Control</span></label></li><li><label for="tab5"><br><span>General</span></label></li><li><label for="tab6"><br><span>Access</span></label></li><li><label for="tab7"><br><span>Account</span></label></li></ul><div id="slider" class="slider"><div class="indicator"></div></div><div class="content11"><section></section><section></section><section></section><section></section></div></div>';
+            for (let i = 0; i < 7; i++) { document.getElementById("tab" + (i + 1)).addEventListener("click", () => translateTab(i)); }
         }
         function translateTab(n) {
             document.getElementById("slider").style.transform = "translateX(" + n * 100 + "%)";
+            switch (n) {
+                case 0: {
+                    document.getElementById("a6").innerHTML = '<div class="lineConfig"><label>Model Name</label><div><div style="width: 30%; height: 30px"><input class="inputView" type="text"style="width: 100%; border-radius: 3px; height: 100%;" value="Gateway0442"readonly=""></div></div></div><div class="lineConfig"><label>Customized Name</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text" style="width: 100%; border-radius: 3px; height: 100%" value="Gateway0442" readonly=""></div></div></div><div class="lineConfig"><label>UUID</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"style="width: 100%; border-radius: 3px; height: 100%"value="Gateway0442-51A89CE21A" readonly=""></div></div></div>';
+                    break;
+                }
+                case 1: {
+                    document.getElementById("a6").innerHTML = '<div class="lineConfig"><label>WLAN Mode</label><div><div class="select" style="width:30%"><select id="sf"><option value="0">Infrastructure Mode</option><option value="1">Access Point Mode</option></select><span class="focus"></span></div></div></div><section class="panel" style="margin-left: 20px;margin-top: 10px"><div id="a6" class="a6" style="padding: 10px; background: #f5f5f5;border-color:#bbb8b8;border-radius:10px;"><div style="font-weight: bold;">First AP Settings</div><div class="lineConfig"><label>SSID of the Access Point</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="Gateway0442-51A89CE21A"></div></div></div><div class="lineConfig"><label>Security Type</label><div><div class="select" style="width:30%;font-size:1.125rem;"><select id="sf"><option value="0">Security Open</option><option value="1">Security WPA/WPA2</option><option value="1">Security WPA/WPA2</option></select><span class="focus"></span></div></div></div><div class="lineConfig"><label>Security Key</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="12345678"></div></div></div></div></section><section class="panel" style="margin-left: 20px;margin-top: 10px"><div id="a6" class="a6" style="padding: 10px; background: #f5f5f5;border-color:#bbb8b8;border-radius:10px;"><div style="font-weight: bold;">Secondary AP Settings(Optional)</div><div class="lineConfig"><label>SSID of the Access Point</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="Gateway0442-51A89CE21A"></div></div></div><div class="lineConfig"><label>Security Type</label><div><div class="select" style="width:30%;font-size:1.125rem;"><select id="sf"><option value="0">Security Open</option><option value="1">Security WPA/WPA2</option><option value="1">Security WPA/WPA2</option></select><span class="focus"></span></div></div></div><div class="lineConfig"><label>Security Key</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="12345678"></div></div></div></div></section><div style="margin-top:20px;border-bottom: 1px solid #eee">Infrastructure Mode IP Settings</div><div class="lineConfig"><label>Mac</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="51-A8-9C-E2-1A"></div></div></div><div class="lineConfig"><label>IP</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="51-A8-9C-E2-1A"></div></div></div><div class="lineConfig"><label>Gateway</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="51-A8-9C-E2-1A"></div></div></div><div class="lineConfig"><label>Subnet Mask</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="51-A8-9C-E2-1A"></div></div></div>';
+                    break;
+                }
+                case 2: {
+                    document.getElementById("a6").innerHTML = '<div class="lineConfig"><label>Web Server Port (Default:80)</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="12345678"></div></div></div><div class="lineConfig"><label>HostIdle (Timeout)</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="30"></div></div></div><div class="lineConfig"><label>Communication WDT Mode</label><div><div class="select" style="width:30%"><select id="sf"><option value="0">Disable</option><option value="1">Enable</option></select><span class="focus"></span></div></div></div><div class="lineConfig"><label>Connection Number Limitation</label><div><div class="select" style="width:30%"><select id="sf"><option value="0">Disable</option><option value="1">Enable</option></select><span class="focus"></span></div></div></div>';
+                    break;
+                }
+				case 3: {
+                    document.getElementById("a6").innerHTML = '<div class="lineConfig"><label>Restore to Default</label><div><div style="width:30%"><button style="width:50%;height: 25px">Reset</button></div></div></div><div class="lineConfig"><label>Reset Password</label><div><div style="width:30%"><button style="width:50%;height: 25px">Reset</button></div></div></div><div class="lineConfig"><label>System Restart</label><div><div style="width:30%"><button style="width:50%;height: 25px">Restart</button></div></div></div>';
+                    break;
+                }
+				case 4: {
+                    document.getElementById("a6").innerHTML = '<div class="lineConfig"><label>Web Server Port (Default:80)</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="12345678"></div></div></div><div class="lineConfig"><label>HostIdle (Timeout)</label><div><div style="width: 30%; height: 30px"><input class="inputEdit" type="text"value="30"></div></div></div><div class="lineConfig"><label>Communication WDT Mode</label><div><div class="select" style="width:30%"><select id="sf"><option value="0">Disable</option><option value="1">Enable</option></select><span class="focus"></span></div></div></div><div class="lineConfig"><label>Connection Number Limitation</label><div><div class="select" style="width:30%"><select id="sf"><option value="0">Disable</option><option value="1">Enable</option></select><span class="focus"></span></div></div></div>';
+                    break;
+                }
+				case 5: {
+                    document.getElementById("a6").innerHTML = '<div class="example bg-1"><section class="panel" style="background: #f0ad4e;"><div class="a6"><table class="infoTable"><thead><tr><th>Enable/Disable </th><th>IP(Ex: 255.255.255.255)</th></tr></thead><tbody><tr><td><input type="checkbox">Device 1</td><td><input class="inputEdit" type="text" value="192.168.1.15"></td></tr><tr><td><input type="checkbox">Device 2</td><td><input class="inputEdit" type="text" value="192.168.1.101"></td></tr><tr><td><input type="checkbox">Device 3</td><td><input class="inputEdit" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 4</td><td><input class="inputEdit" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 5</td><td><input class="inputEdit" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 6</td><td><input class="inputEdit" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 7</td><td><input class="inputEdit" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 8</td><td><input class="inputEdit" type="text" value="255.255.255.255"></td></tr></tbody></table></div></section></div>';
+                    break;
+                }
+				case 5: {
+                    document.getElementById("a6").innerHTML = '';
+                    break;
+                }
+            }
         }
         buildConfig();
         var page = 1;
