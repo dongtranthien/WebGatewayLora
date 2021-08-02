@@ -144,7 +144,6 @@
             height:100%;
             background-color:var(--a);
             transition:0.2s;
-            max-width:1800px;
         }
 
         .a4{
@@ -964,7 +963,7 @@
 
         .bf .bd{
             position:relative;
-            width:14.3%;
+            width:16.65%;
             transition:all 0.33s cubic-bezier(0.38,0.8,0.32,1.07);
         }
 
@@ -980,6 +979,188 @@
 
         .bf{
             margin-top:30px;
+        }
+    </style>
+    <style>
+        .icon-trash {
+            width: 28px;
+            height: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-trash .trash-lid {
+            width: 62%;
+            height: 10%;
+            position: absolute;
+            left: 50%;
+            margin-left: -31%;
+            top: 10.5%;
+            background-color: #000;
+            border-top-left-radius: 80%;
+            border-top-right-radius: 80%;
+            -webkit-transform: rotate(-5deg);
+            -moz-transform: rotate(-5deg);
+            -ms-transform: rotate(-5deg);
+            transform: rotate(-5deg); 
+        }
+
+        .icon-trash .trash-lid:after {
+            content: "";
+            width: 26%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            margin-left: -13%;
+            margin-top: -10%;
+            background-color: inherit;
+            border-top-left-radius: 30%;
+            border-top-right-radius: 30%;
+            -webkit-transform: rotate(-1deg);
+            -moz-transform: rotate(-1deg);
+            -ms-transform: rotate(-1deg);
+            transform: rotate(-1deg); 
+        }
+
+        .icon-trash .trash-container {
+            width: 56%;
+            height: 65%;
+            position: absolute;
+            left: 50%;
+            margin-left: -28%;
+            bottom: 10%;
+            background-color: #000;
+            border-bottom-left-radius: 15%;
+            border-bottom-right-radius: 15%;
+        }
+
+        .icon-trash .trash-container:after {
+            content: "";
+            width: 110%;
+            height: 12%;
+            position: absolute;
+            left: 50%;
+            margin-left: -55%;
+            top: 0;
+            background-color: inherit;
+            border-bottom-left-radius: 45%;
+            border-bottom-right-radius: 45%;
+        }
+
+        .icon-trash .trash-line-1 {
+            width: 4%;
+            height: 50%;
+            position: absolute;
+            left: 38%;
+            margin-left: -2%;
+            bottom: 17%;
+            background-color: #252527;
+        }
+
+        .icon-trash .trash-line-2 {
+            width: 4%;
+            height: 50%;
+            position: absolute;
+            left: 50%;
+            margin-left: -2%;
+            bottom: 17%;
+            background-color: #252527;
+        }
+
+        .icon-trash .trash-line-3 {
+            width: 4%;
+            height: 50%;
+            position: absolute;
+            left: 62%;
+            margin-left: -2%;
+            bottom: 17%;
+            background-color: #252527;
+        }
+        
+        .taskItem{
+            cursor:pointer;
+            margin:12px;
+            flex-direction: row;
+            display:flex;
+            justify-content: space-between;
+        }
+        .taskItem :hover{
+            color: red;
+        }
+        .arrows {
+            width: 40px;
+            height: 65px;
+        }
+
+        .arrows path {
+            stroke: #84ceeb;
+            fill: transparent;
+            stroke-width: 3px;	
+            animation: arrow 2s infinite;
+            -webkit-animation: arrow 2s infinite; 
+        }
+
+        @keyframes arrow
+        {
+            0% {opacity:0; transform:translateY(2px)}
+            80% {opacity:1; transform:translateY(30px)}
+            100% {opacity:0; transform:translateY(30px)}
+        }
+
+        @-webkit-keyframes arrow /*Safari and Chrome*/
+        {
+            0% {opacity:0; transform:translateY(2px)}
+            80% {opacity:1; transform:translateY(30px)}
+            100% {opacity:0; transform:translateY(30px)}
+        }
+
+        .arrows path.a1 {
+            animation-delay:-0.5s;
+            -webkit-animation-delay:-0.5s; /* Safari and Chrome */
+        }
+
+        .ex {
+            padding: 0;
+        margin: 0;
+            list-style: none;
+            position: relative;
+        }
+            
+        .lb{
+            display:inline-block;
+        }
+        .la{
+            background-color: #E64A19;
+            width:170px;
+            float:none;
+            display:list-item;
+            position: relative;
+            cursor: pointer
+        }
+
+        .ld{
+            display:block;
+            padding:0 10px;	
+            color:#FFF;
+            font-size:20px;
+            line-height: 60px;
+            text-decoration:none;
+        }
+
+        .ld:hover { 
+            background-color: #000000; 
+        }
+
+        /* Hide Dropdowns by Default */
+        .lc{
+            display: none;
+            position: absolute; 
+            top: 60px; /* the height of the main nav */
+        }
+            
+        /* Display Dropdowns on Hover */
+        .lb:hover > ul {
+            display:inherit;
         }
     </style>
 </head>
@@ -1035,6 +1216,15 @@
                     <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"></path>
                 </svg>
             </a>
+            <a id="4" class="a1">
+                <svg class="link-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+            </a>
             <a id="3" class="a1">
                 <svg class="link-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round"
                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
@@ -1047,7 +1237,153 @@
             </a>
         </div>
         <div id="content" class="a8">
-            
+            <div class="m">
+                <p>Task</p>
+            </div>
+            <div style="display:flex;flex-direction:row;height: 100%;">
+                <div style="width: 20%;align-items: center;">
+                    <div style="text-align: center;font-size: 24px;font-weight: bold;">
+                        List
+                    </div>
+                    <hr>
+                    <div class="taskItem">
+                        <div style="justify-content: center;align-items: center;align-content: center;">
+                            <p>
+                                Get pallet 1
+                            </p>
+                        </div>
+                        <div style="align-items:center;display:flex;justify-content: center;">
+                            <div class="icon-trash" style="float: left;">
+                                <div class="trash-lid" style="background-color: #2CC3B5"></div>
+                                <div class="trash-container" style="background-color: #2CC3B5"></div>
+                                <div class="trash-line-1"></div>
+                                <div class="trash-line-2"></div>
+                                <div class="trash-line-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="taskItem">
+                        <div style="justify-content: center;align-items: center;align-content: center;">
+                            <p>
+                                Get pallet 2
+                            </p>
+                        </div>
+                        <div style="align-items:center;display:flex;justify-content: center;">
+                            <div class="icon-trash" style="float: left;">
+                                <div class="trash-lid" style="background-color: #2CC3B5"></div>
+                                <div class="trash-container" style="background-color: #2CC3B5"></div>
+                                <div class="trash-line-1"></div>
+                                <div class="trash-line-2"></div>
+                                <div class="trash-line-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    
+                    <div style="margin:15px;">
+                        <button style="width:100%;font-size:18px;padding:15px;background-color:rgb(235, 250, 244);border-radius:20px;">
+                            + Add Task
+                        </button>
+                    </div>
+                    <div style="margin:15px;">
+                        <button style="width:100%;font-size:18px;padding:15px;background-color:rgb(235, 250, 244);border-radius:20px;">
+                            Sync
+                        </button>
+                    </div>
+                </div>
+                <div style="border-left: 3px solid rgb(192, 138, 67);height: 100%"></div>
+                <div style="width: 80%;">
+                    <div style="text-align: center;font-size: 24px;font-weight: bold;">
+                        Task detail
+                    </div>
+                    <hr>
+                    <div style="text-align: center;font-size: 24px;font-weight: bold;justify-content: center;display: flex;flex-direction: row">
+                        <div style="background-color:#ff928b;display:flex;flex-direction:row;padding: 15px;border-radius: 25px;">
+                            <div style="margin-right:20px;">Trigger From Node</div>
+                            <div class="be" style="font-size:1.125rem;">
+                                <select id="sf">
+                                    <option value="0">#1a841ec51</option>
+                                    <option value="1">#1af85c88</option>
+                                    <option value="2">#245a3ba5</option>
+                                </select>
+                                <span class="focus"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="justify-content: center;display: flex;flex-direction: row">
+                        <svg class="arrows">
+							<path stroke-linecap="round" class="a1" d="M0 0 L20 22 L40 0"></path>
+						</svg>
+                    </div>
+                    <div style="text-align: center;font-size: 24px;font-weight: bold;justify-content: center;display: flex;flex-direction: row">
+                        <div style="background-color:#ccd5ae;display:flex;flex-direction:row;padding: 15px;border-radius: 25px;">
+                            <div style="margin-right:20px;">Set IO</div>
+                            <div class="be" style="font-size:1.125rem;">
+                                <select id="sf">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <span class="focus"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="justify-content: center;display: flex;flex-direction: row">
+                        <svg class="arrows">
+							<path stroke-linecap="round" class="a1" d="M0 0 L20 22 L40 0"></path>
+						</svg>
+                    </div>
+                    <div style="text-align: center;font-size: 24px;font-weight: bold;justify-content: center;display: flex;flex-direction: row">
+                        <div style="background-color:#ccdbfd;display:flex;flex-direction:row;padding: 15px;border-radius: 25px;">
+                            <div style="margin-right:20px;">Go to land mark</div>
+                            <div class="be" style="font-size:1.125rem;">
+                                <select id="sf">
+                                    <option value="0">LM1</option>
+                                    <option value="1">LM2</option>
+                                    <option value="1">LM3</option>
+                                </select>
+                                <span class="focus"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="justify-content: center;display: flex;flex-direction: row">
+                        <svg class="arrows">
+							<path stroke-linecap="round" class="a1" d="M0 0 L20 22 L40 0"></path>
+						</svg>
+                    </div>
+                    <div style="text-align: center;font-size: 24px;font-weight: bold;justify-content: center;display: flex;flex-direction: row">
+                        <div style="background-color:#ccdbfd;display:flex;flex-direction:row;padding: 15px;border-radius: 25px;">
+                            <div style="margin-right:20px;">Go to land mark</div>
+                            <div class="be" style="font-size:1.125rem;">
+                                <select id="sf">
+                                    <option value="0">LM1</option>
+                                    <option value="1">LM2</option>
+                                    <option value="1">LM3</option>
+                                </select>
+                                <span class="focus"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top:40px; text-align: center;font-size: 48px;font-weight: bold;justify-content: center;display: flex;flex-direction: row;">
+                        <ul class="ex">
+                            <li class="lb">
+                                <div style="background-color:rgb(211, 180, 252);display:flex;flex-direction:row;padding: 15px 30px;border-radius: 55px;cursor: pointer;">+</div>
+                                <ul class="lc ex">
+                                    <li id="l1" class='la ld'>Set IO</li>
+                                    <li id="l2" class='la ld'>Go to LM</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1061,10 +1397,11 @@
            {i:"#d55168aef2",r:-27,e:3,s:1},
            {i:"#1af85c88",r:-51,e:0,s:1},
         ];
+        var contentObj = document.getElementById("content");
         function buildInfomation(){
             let contentStr='<div class="m"><p>Information</p><div class="view-actions"></div></div><div style="overflow:scroll"><div class="b2 bg-1"><section class="b6" style="background:#d9534f;"><header class="b3"><h1 class="b1">Module</h1></header><div class="a6"><div class="k"><label>Model Name</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%;" value="Gateway0442" readonly></input></div></div></div><div class="k"><label>Customized Name</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="Gateway0442" readonly></input></div></div></div><div class="k"><label>UUID</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="Gateway0442-51A89CE21A" readonly></input></div></div></div><div class="k"><label>Working Mode</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="Initial Mode" readonly></input></div></div></div></div></section></div><div class="b2 bg-1"><section class="b6" style="background:#5cb85c;"><header class="b3"><h1 class="b1">Wireless Status</h1></header><div class="a6"><table class="b9"><thead><tr><th>Type</th><th>Status</th></tr></thead><tbody><tr><td >MAC ID of the Client Device</td><td>C0-E4-34-8C-80-FF</td></tr></tbody></table></div></section></div><div class="b2 bg-1"><section class="b6" style="background:#428bca;"><header class="b3"><h1 class="b1">Network Information</h1></header><div class="a6"><div class="k"><label>WLAN Mode</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="Infrastructure Mode" readonly></input></div></div></div><div class="k"><label>Mac</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="51-A8-9C-E2-1A" readonly></input></div></div></div><div class="k"><label>IP</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="192.168.1.10" readonly></input></div></div></div><div class="k"><label>Gateway</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="192.168.1.1" readonly></input></div></div></div><div class="k"><label>Subnet</label><div><div style="width:30%; height:30px"><input class="b7" type="text" style="width:100%; border-radius:3px; height:100%" value="255.255.255.0" readonly></input></div></div></div><div class="k"><label>IP Mode</label><div></div></div></div></section></div><div class="b2 bg-1"><section class="b6" style="background:#f0ad4e;"><header class="b3"><h1 class="b1">Module Information</h1></header><div class="a6"><table class="b9"><thead><tr><th>Module Name</th><th>Module Description</th><th>Firmware Description</th></tr></thead><tbody><tr><td >Gateway-0442</td><td>4-ch DI and 4-ch DO IoT Wireless I/O Module with RS-485 Port</td><td data-column="Job Title">Fw:A2.00 B07,Bootloader:A1.00 B01</td></tr></tbody></table></div></section></div></div>';
 
-            document.getElementById("content").innerHTML=contentStr;
+            contentObj.innerHTML=contentStr;
         }
         function buildDashboard(){
             let color_t=[
@@ -1097,12 +1434,114 @@
                     " Error</div></div></div></div>";
             }
             contentStr +="</div>";
-            document.getElementById("content").innerHTML=contentStr;
+            contentObj.innerHTML=contentStr;
         }
         function buildConfig(){
-            document.getElementById("content").innerHTML='<div class="m"><p>Setting</p></div><div class="bf" style="overflow:scroll; height:100%"><input type="radio" id="tab1" name="tab-control"><input type="radio" id="tab2" name="tab-control"><input type="radio" id="tab3" name="tab-control"><input type="radio" id="tab4" name="tab-control"><input type="radio" id="tab5" name="tab-control"><input type="radio" id="tab6" name="tab-control"><input type="radio" id="tab7" name="tab-control"><ul><li><label for="tab1"><br><span>Information</span></label></li><li><label for="tab2"><br><span>Wireless</span></label></li><li><label for="tab3"><br><span>Network App</span></label></li><li><label for="tab4"><br><span>Control</span></label></li><li><label for="tab5"><br><span>General</span></label></li><li><label for="tab6"><br><span>Access</span></label></li><li><label for="tab7"><br><span>Account</span></label></li></ul><div id="bd" class="bd"><div class="bc"></div></div><div><section class="b6" style="background:#f5f5f5;margin-left:20px;margin-top:10px"><div id="a6" class="a6" style="padding:20px;"></div></section></div></div>';
+            contentObj.innerHTML='<div class="m"><p>Setting</p></div><div class="bf" style="overflow:scroll; height:100%"><input type="radio" id="tab1" name="tab-control"><input type="radio" id="tab2" name="tab-control"><input type="radio" id="tab3" name="tab-control"><input type="radio" id="tab4" name="tab-control"><input type="radio" id="tab5" name="tab-control"><input type="radio" id="tab6" name="tab-control"><input type="radio" id="tab7" name="tab-control"><ul><li><label for="tab1"><br><span>Information</span></label></li><li><label for="tab2"><br><span>Wireless</span></label></li><li><label for="tab3"><br><span>Network App</span></label></li><li><label for="tab4"><br><span>Lora</span></label></li><li><label for="tab5"><br><span>Access</span></label></li><li><label for="tab6"><br><span>System</span></label></li></ul><div id="bd" class="bd"><div class="bc"></div></div><div><section class="b6" style="background:#f5f5f5;margin-left:20px;margin-top:10px"><div id="a6" class="a6" style="padding:20px;"></div></section></div></div>';
 			translateTab(0);
             for(let i=0; i < 7; i++){document.getElementById("tab" +(i + 1)).addEventListener("click",()=> translateTab(i));}
+        }
+        var task = [
+            {
+                n:"Get Pallet 1",
+                r:0,
+                d:[
+                    {
+                        t:0,
+                        v:6
+                    },
+                    {
+                        t:2,
+                        v:1
+                    },
+                    {
+                        t:2,
+                        v:2
+                    },
+                    {
+                        t:1,
+                        v:1
+                    },
+                ]
+            },
+            {
+                n:"Charge Agv",
+                r:1,
+                d:[
+                    {
+                        t:0,
+                        v:6
+                    },
+                    {
+                        t:2,
+                        v:1
+                    },
+                    {
+                        t:1,
+                        v:6
+                    },
+                ]
+            }
+        ];
+        var taskChoose=0;
+        function buildTask(){
+            let ct='<div class="m"><p>Task</p></div><div style="display:flex;flex-direction:row;height: 100%;"><div style="width: 20%;align-items: center;"><div style="text-align: center;font-size: 24px;font-weight: bold;">List</div><hr>';
+
+            for(let i=0;i<task.length; i++){
+                ct+='<div class="taskItem"><div style="justify-content: center;align-items: center;align-content: center;"><p>'+task[i].n+'</p></div><div style="align-items:center;display:flex;justify-content: center;"><div class="icon-trash" style="float: left;"><div class="trash-lid" style="background-color: #2CC3B5"></div><div class="trash-container" style="background-color: #2CC3B5"></div><div class="trash-line-1"></div><div class="trash-line-2"></div><div class="trash-line-3"></div></div></div></div><hr>';
+            }
+            let a='<div style="margin:15px;"><button ';
+            let b=' style="width:100%;font-size:18px;padding:15px;background-color:rgb(235, 250, 244);border-radius:20px;">';
+            let c='</button></div>';
+
+            ct+= a+'id="addTask"'+b +"Add Task"+c;
+            ct+= a+'id="sync"'+b +"Sync"+c;
+            ct+= a+'id="export"'+b +"Export"+c;
+            ct+='</div><div style="border-left: 3px solid rgb(192, 138, 67);height: 100%"></div><div style="width: 80%;"><div style="text-align: center;font-size: 24px;font-weight: bold;">Task detail</div><hr>';
+            let ar='<div style="justify-content:center;display:flex;flex-direction:row"><svg class="arrows"><path stroke-linecap="round" class="a1" d="M0 0 L20 22 L40 0"></path></svg></div>';
+            ct+='<div style="text-align: center;font-size: 24px;font-weight: bold;justify-content: center;display: flex;flex-direction: row"><div style="background-color:#ff928b;display:flex;flex-direction:row;padding: 15px;border-radius: 25px;"><div style="margin-right:20px;">Trigger From Node</div><div class="be" style="font-size:1.125rem;"><select id="selecTrigger">';
+            for(let i=0;i<nodeObj.length;i++){
+                let t1='<option value="0"';
+                if(i==task[taskChoose].r){
+                    t1+= ' selected';
+                }
+
+                t1+=('>'+nodeObj[i].i+'</option>');
+                ct+=t1;
+            }
+            ct+='</select><span class="focus"></span></div></div></div>';
+
+            let select="",bg="";
+            let selectIO='</div><div class="be" style="font-size:1.125rem;"><select id="sf">';
+            for(let i=0;i<8;i++){
+                selectIO +=('<option value="'+i+'">'+i+'</option>');
+            }
+            selectIO+='</select><span class="focus"></span></div></div></div>';
+            let selectLM='</div><div class="be" style="font-size:1.125rem;"><select id="sf"><option value="0">LM1</option><option value="1">LM2</option><option value="1">LM3</option></select><span class="focus"></span></div></div></div>';
+            for(let i=0;i<task[taskChoose].d.length;i++){
+                ct+=ar;
+                ct+='<div style="text-align:center;font-size:24px;font-weight:bold;justify-content:center;display:flex;flex-direction:row"><div style="background-color:#';
+                let name='';
+                let taskC=task[taskChoose];
+                if(taskC.d[i].t==0){
+                    bg="ccd5ae";
+                    name="Set IO";
+                    select=selectIO;
+                }
+                else if(taskC.d[i].t==1){
+                    bg="ddbea9";
+                    name="Reset IO";
+                    select=selectIO;
+                }
+                else{
+                    bg="ccdbfd";
+                    name="Go to landmark";
+                    select=selectLM;
+                }
+                ct+=(bg+';display:flex;flex-direction:row;padding: 15px;border-radius: 25px;"><div style="margin-right:20px;">'+name+select);
+            }
+            ct+='<div style="margin-top:40px; text-align: center;font-size: 48px;font-weight: bold;justify-content: center;display: flex;flex-direction: row;"><ul class="ex"><li class="lb"><div style="background-color:rgb(211, 180, 252);display:flex;flex-direction:row;padding: 15px 30px;border-radius: 55px;cursor: pointer;">+</div><ul class="lc ex"><li id="l1" class="la ld">Set IO</li><li id="l2" class="la ld">Go to LM</li></ul></li></ul></div>';
+            contentObj.innerHTML=ct;
         }
         function translateTab(n){
             document.getElementById("bd").style.transform="translateX(" + n * 100 + "%)";
@@ -1120,24 +1559,21 @@
                     break;
                 }
 				case 3:{
-                    document.getElementById("a6").innerHTML='<div class="k"><label>Restore to Default</label><div><div style="width:30%"><button style="width:50%;height:25px">Reset</button></div></div></div><div class="k"><label>Reset Password</label><div><div style="width:30%"><button style="width:50%;height:25px">Reset</button></div></div></div><div class="k"><label>System Restart</label><div><div style="width:30%"><button style="width:50%;height:25px">Restart</button></div></div></div>';
+                    document.getElementById("a6").innerHTML='<div class="k"><label>Spreading Factor</label><div><div class="be" style="width:30%"><select id="sf"><option value="0">7</option><option value="1">8</option><option value="2">9</option><option value="3">10</option><option value="4">11</option><option value="5">12</option></select><span class="focus"></span></div></div></div><div class="k"><label>Bandwidth</label><div><div class="be" style="width:30%"><select id="sf"><option value="0">125Khz</option><option value="1">250Khz</option><option value="2">500Khz</option></select><span class="focus"></span></div></div></div><div class="k"><label>Coding Rate</label><div><div class="be" style="width:30%"><select id="sf"><option value="0">4/5</option><option value="1">4/6</option><option value="2">4/7</option><option value="3">4/8</option></select><span class="focus"></span></div></div></div><div class="k"><label>Timeout(s)</label><div><div style="width:30%; height:30px"><input class="b8" type="text" value="4"></div></div></div>';
                     break;
                 }
 				case 4:{
-                    document.getElementById("a6").innerHTML='<div class="k"><label>Web Server Port(Default:80)</label><div><div style="width:30%; height:30px"><input class="b8" type="text"value="12345678"></div></div></div><div class="k"><label>HostIdle(Timeout)</label><div><div style="width:30%; height:30px"><input class="b8" type="text"value="30"></div></div></div><div class="k"><label>Communication WDT Mode</label><div><div class="be" style="width:30%"><select id="sf"><option value="0">Disable</option><option value="1">Enable</option></select><span class="focus"></span></div></div></div><div class="k"><label>Connection Number Limitation</label><div><div class="be" style="width:30%"><select id="sf"><option value="0">Disable</option><option value="1">Enable</option></select><span class="focus"></span></div></div></div>';
-                    break;
-                }
-				case 5:{
                     document.getElementById("a6").innerHTML='<div class="b2 bg-1"><section class="b6" style="background:#f0ad4e;"><div class="a6"><table class="b9"><thead><tr><th>Enable/Disable </th><th>IP(Ex:255.255.255.255)</th></tr></thead><tbody><tr><td><input type="checkbox">Device 1</td><td><input class="b8" type="text" value="192.168.1.15"></td></tr><tr><td><input type="checkbox">Device 2</td><td><input class="b8" type="text" value="192.168.1.101"></td></tr><tr><td><input type="checkbox">Device 3</td><td><input class="b8" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 4</td><td><input class="b8" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 5</td><td><input class="b8" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 6</td><td><input class="b8" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 7</td><td><input class="b8" type="text" value="255.255.255.255"></td></tr><tr><td><input type="checkbox">Device 8</td><td><input class="b8" type="text" value="255.255.255.255"></td></tr></tbody></table></div></section></div>';
                     break;
                 }
 				case 5:{
-                    document.getElementById("a6").innerHTML='';
+                    document.getElementById("a6").innerHTML='<div class="k"><label>Restore to Default</label><div><div style="width:30%"><button style="width:50%;height:25px">Reset</button></div></div></div><div class="k"><label>Reset Password</label><div><div style="width:30%"><button style="width:50%;height:25px">Reset</button></div></div></div><div class="k"><label>System Restart</label><div><div style="width:30%"><button style="width:50%;height:25px">Restart</button></div></div></div>';
                     break;
                 }
             }
         }
-        buildInfomation();
+        // buildInfomation();
+        buildTask();
         var page=1;
         var config=[1,2,3];
         function setPage(i){
@@ -1146,6 +1582,7 @@
             document.getElementById("1").classList.remove("active");
             document.getElementById("2").classList.remove("active");
             document.getElementById("3").classList.remove("active");
+            document.getElementById("4").classList.remove("active");
             if(i==1){
                 document.getElementById("1").classList.add("active");
                 buildInfomation();
@@ -1156,7 +1593,20 @@
                 document.getElementById("3").classList.add("active");
                 buildConfig();
                 //
-                //document.getElementById("content").innerHTML=
+                //contentObj.innerHTML=
+                //   '<div class="m"><p>Config</p><div class="view-actions"><button class="n list-view" title="List View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" ><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg></button><button class="n grid-view active" title="Grid View"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg></button></div></div><div style="display:flex; flex-direction:column; margin:2vw"><div class="k"><label>Spreading Factor</label><div><div class="be" style="width:30%"><select id="sf"><option value="7">SF7</option><option value="8">SF8</option><option value="9">SF9</option><option value="10">SF10</option><option value="11">SF11</option><option value="12">SF12</option></select><span class="focus"></span></div></div></div><div class="k"><label>Bandwidth</label><div><div class="be" style="width:30%;"><select id="bw"><option value="0">125KHz</option><option value="1">250KHz</option><option value="2">500KHz</option></select><span class="focus"></span></div></div></div><div class="k"><label>Code rate</label><div><div class="be" style="width:30%;"><select id="cr"><option value="1">4/5</option><option value="2">4/6</option><option value="3">4/7</option><option value="4">4/8</option></select><span class="focus"></span></div></div></div></div><div style="display:flex; flex-direction:column; margin:2vw"><div style="display:flex;align-items:center;"><div style="width:75%;"><div style="display:flex;justify-content:center;"><button id="configBtn" style="z-index:2; width:20vw;font-size:2vw; border-radius:0.5vw;background-color:#4ce06c;">Update</button></div></div><div style="width:30%;"></div></div></div>';
+                //document.getElementById("sf").selectedIndex=config[0];
+                //document.getElementById("bw").selectedIndex=config[1];
+                //document.getElementById("cr").selectedIndex=config[2];
+                //document
+                //    .getElementById("configBtn")
+                //    .addEventListener("click",SetConfig);
+            }
+            else if(i==4){
+                document.getElementById("4").classList.add("active");
+                buildTask();
+                //
+                //contentObj.innerHTML=
                 //   '<div class="m"><p>Config</p><div class="view-actions"><button class="n list-view" title="List View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" ><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg></button><button class="n grid-view active" title="Grid View"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg></button></div></div><div style="display:flex; flex-direction:column; margin:2vw"><div class="k"><label>Spreading Factor</label><div><div class="be" style="width:30%"><select id="sf"><option value="7">SF7</option><option value="8">SF8</option><option value="9">SF9</option><option value="10">SF10</option><option value="11">SF11</option><option value="12">SF12</option></select><span class="focus"></span></div></div></div><div class="k"><label>Bandwidth</label><div><div class="be" style="width:30%;"><select id="bw"><option value="0">125KHz</option><option value="1">250KHz</option><option value="2">500KHz</option></select><span class="focus"></span></div></div></div><div class="k"><label>Code rate</label><div><div class="be" style="width:30%;"><select id="cr"><option value="1">4/5</option><option value="2">4/6</option><option value="3">4/7</option><option value="4">4/8</option></select><span class="focus"></span></div></div></div></div><div style="display:flex; flex-direction:column; margin:2vw"><div style="display:flex;align-items:center;"><div style="width:75%;"><div style="display:flex;justify-content:center;"><button id="configBtn" style="z-index:2; width:20vw;font-size:2vw; border-radius:0.5vw;background-color:#4ce06c;">Update</button></div></div><div style="width:30%;"></div></div></div>';
                 //document.getElementById("sf").selectedIndex=config[0];
                 //document.getElementById("bw").selectedIndex=config[1];
@@ -1174,6 +1624,9 @@
         });
         document.getElementById("3").addEventListener("click",function(){
             setPage(3);
+        });
+        document.getElementById("4").addEventListener("click",function(){
+            setPage(4);
         });
         function SetConfig(){
             document.getElementById("ab").style.opacity="0.1";
@@ -1216,7 +1669,7 @@
             xmlHttp.onreadystatechange=function(){
                 if(xmlHttp.readyState==4 && xmlHttp.status==200)
                     callback(xmlHttp.responseText);
-           };
+            };
             xmlHttp.open("GET",theUrl,true);
             xmlHttp.send(null);
         }
