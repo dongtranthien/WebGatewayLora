@@ -1260,29 +1260,47 @@
                 "c8f7dc",
                 "d5deff",
             ];
+            var funnyId=[
+                'd55168af181',
+                '9cef5101aa4',
+                '385b1c612bb',
+                '1ff74a5574c'
+            ];
             let contentStr='<div class="m"><p>Dashboard</p><div class="view-actions"></div></div><div class="v b" style="margin-bottom:10px;">';
+
+            console.log("buildDashboard");
+            console.log(nodeObj);
             for(let i=0; i < nodeObj.length; i++){
-                let s="OFFLINE";
+                let s="Node DIDO";
                 if(nodeObj[i].s==1){
-                    s="ONLINE";
+                    s="Node AIDO";
                 }
+                let temp=nodeObj[i].i;
+                temp = parseInt(temp);
                 contentStr +=
                     '<div class="i"><div class="project-box" style="background-color:#' +
-                    color_t[i] +
+                    ((nodeObj[i].e == 0)?color_t[0]:color_t[1]) +
                     ';"><div class="o"> <span>' +
                     s +
-                    '</span><div class="a9"> <button class="p"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="1" /> <circle cx="12" cy="5" r="1" /> <circle cx="12" cy="19" r="1" /></svg> </button></div></div><div class="l"><p class="q">' +
-                    nodeObj[i].i +
+                    '</span><div class="a9"> <button class="p"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="1" /> <circle cx="12" cy="5" r="1" /> <circle cx="12" cy="19" r="1" /></svg> </button></div></div><div class="l"><p class="q">#' +
+                    String(funnyId[i]) + '-' + nodeObj[i].i +
                     '</p></div><div class="e"><p class="r">RSSI</p><div class="t"> <span class="c" style="width:' +
                     (100 + nodeObj[i].r)+
                     '%; background-color:#ff942e"></span></div><p class="y">' +
                     nodeObj[i].r +
-                    '%</p></div><div class="u"><div class="x"> <button class="z" style="color:#ff942e;"> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 5v14M5 12h14" /> </svg> </button></div><div class="am" style="color:#ff942e;">' +
-                    nodeObj[i].e +
-                    " Error</div></div></div></div>";
+                    '%</p></div><div class="u"><div class="x"> <button class="z" style="color:#ff942e;"> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 5v14M5 12h14" /> </svg> </button></div><button id="link_'+temp+'" class="am" style="color:#ff942e;">' +
+                    ((nodeObj[i].e == 0)?'Link...':'Unlink!') +
+                    '</button></div></div></div>';
             }
             contentStr +="</div>";
             contentObj.innerHTML=contentStr;
+
+            for(let i=0; i < nodeObj.length; i++){
+                let temp=nodeObj[i].i;
+                temp = parseInt(temp);
+                let element=document.getElementById("link_" + temp);
+                element.addEventListener('click', ()=>LinkOrUnlinkNode(temp));
+            }
         }
         function buildConfig(){
             contentObj.innerHTML='<div class="m"><p>Setting</p></div><div class="bf" style="overflow: scroll; height: 100%"> <input type="radio" id="tab1" name="tab-control"/><input type="radio" id="tab2" name="tab-control"/><input type="radio" id="tab3" name="tab-control"/><input type="radio" id="tab4" name="tab-control"/><input type="radio" id="tab5" name="tab-control"/><input type="radio" id="tab6" name="tab-control"/><input type="radio" id="tab7" name="tab-control"/> <ul> <li> <label for="tab1"><br/><span>Information</span></label> </li><li> <label for="tab2"><br/><span>Wireless</span></label> </li><li> <label for="tab3"><br/><span>Network App</span></label> </li><li> <label for="tab4"><br/><span>Lora</span></label> </li><li> <label for="tab5"><br/><span>Access</span></label> </li><li> <label for="tab6"><br/><span>System</span></label> </li></ul> <div id="bd" class="bd"><div class="bc"></div></div><div> <section class="b6" style="background: #f5f5f5; margin-left: 20px; margin-top: 10px" > <div id="a6" class="a6" style="padding: 20px"></div></section></div><div style="display:flex;align-items:center;justify-content:center;"> <button id="btnConfirm" style="margin-left: 25px;margin-top: 10px ;background: rgb(28, 184, 65);font-size: 18px;color: white;font-weight: bold; border-radius: 4px;text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);">Confirm</button> <button id="btnRestore" style="margin-left: 25px;margin-top: 10px ;background: rgb(223, 117, 20);font-size: 18px;color: white;font-weight: bold; border-radius: 4px;text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);">Restore</button> </div></div>';
@@ -1521,15 +1539,17 @@
             console.log(result);
             try {
                 nodeObj=JSON.parse(result);
+                console.log("ProcessNodeDataReceived");
+                console.log(nodeObj);
 
-                nodeObj.push({i:"#d55168aef2",r:-27,e:3,s:1});
-                nodeObj.push({i:"#1af85c88",r:-51,e:0,s:1});
-                if(page==2){
-                    buildDashboard();
-                }
+                /*nodeObj.push({i:"#d55168aef2",r:-27,e:3,s:1});*/
+                /*nodeObj.push({i:"#1af85c88",r:-51,e:0,s:1});*/
             }
             catch(err) {
                 console.log("Pare json node data error!");
+            }
+            if(page==2){
+                buildDashboard();
             }
             
             setTimeout(RequestNodeData,3000);
@@ -1605,6 +1625,36 @@
                 configData.h = document.getElementById("bw").selectedIndex;
                 configData.i = document.getElementById("cr").selectedIndex;
             }
+        }
+        function LinkOrUnlinkNode(node){
+            console.log("Link Or Unlink Node: " + node);
+            for(let i = 0; i < nodeObj.length; i++){
+                if(nodeObj[i].i == node){
+                    if(parseInt(nodeObj[i].e) == 0){
+                        httpGetAsync(
+                            "/link/" +
+                            node,
+                            ProcessLinkResponse
+                        );
+                    }
+                    else{
+                        httpGetAsync(
+                            "/unlink/" +
+                            node,
+                            ProcessUnLinkResponse
+                        );
+                    }
+                    break;
+                }
+            }
+        }
+        function ProcessLinkResponse(result){
+            console.log('ProcessLinkResponse');
+            console.log(result);
+        }
+        function ProcessUnLinkResponse(result){
+            console.log('ProcessUnLinkResponse');
+            console.log(result);
         }
     });
 </script>
